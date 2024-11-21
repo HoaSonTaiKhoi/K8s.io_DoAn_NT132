@@ -20,6 +20,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     origin: allowedOrigins
 //   }));
 app.use(cors());
+
+// try {
+//     await mongoose.connect(process.env.MONGO_URL);
+//     console.log('Database Connection Successful');
+// } 
+// catch(err){
+//     console.log(err);
+// }
 mongoose.connect(process.env.MONGO_URL , {
     
 }).then(() => console.log("DB Connection Succesfull")).catch((err) => console.log(err))

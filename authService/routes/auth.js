@@ -4,6 +4,12 @@ var CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken")
 const nodeMailer = require("nodemailer")
 router.post("/register", async (req, res) => {
+    const existedUser = await User.findOne({
+        email: req.body.email
+    });
+
+    console.log(existedUser);
+
     const newUser = new User({
         username: req.body.username,
         email: req.body.email,
@@ -12,6 +18,8 @@ router.post("/register", async (req, res) => {
             process.env.SECRET_KEY
         ).toString(),
     });
+    
+    console.log(process.env.MAIL_FROM);
 
     let transporter = nodeMailer.createTransport({
         host: process.env.MAIL_HOST,
@@ -22,7 +30,7 @@ router.post("/register", async (req, res) => {
             pass: process.env.MAIL_PASSWORD,
         }
     })
-
+    
     let token = jwt.sign({ email: req.body.email }, process.env.SECRET_KEY, {
         expiresIn: "1h",
     });
@@ -35,6 +43,7 @@ router.post("/register", async (req, res) => {
         subject: "Email Verification",
         text: `Click on the link to verify your email: ${verificationLink}\n This link will expire in 1 hour.`,
     }
+    
     try {
         const user = await newUser.save();
         transporter.sendMail(mailOptions, (err, data) => {
