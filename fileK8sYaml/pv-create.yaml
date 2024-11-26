@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-1
+  labels:
+    app: movie-user-db-pv
 spec:
   capacity:
     storage: 1Gi
@@ -17,6 +19,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-2
+  labels:
+    app: movie-bill-db-pv
 spec:
   capacity:
     storage: 1Gi
@@ -32,6 +36,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-3
+  labels:
+    app: movie-detail-db-pv
 spec:
   capacity:
     storage: 1Gi

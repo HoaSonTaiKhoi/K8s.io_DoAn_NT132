@@ -4,6 +4,9 @@ metadata:
   name: movie-user-pvc
   namespace: movie-qtm
 spec:
+  selector:
+    matchLabels:
+      app: movie-user-db-pv
   accessModes:
     - ReadWriteMany
   resources:
@@ -17,6 +20,9 @@ metadata:
   name: movie-bill-pvc
   namespace: movie-qtm
 spec:
+  selector:
+    matchLabels:
+      app: movie-bill-db-pv
   accessModes:
     - ReadWriteMany
   resources:
@@ -30,6 +36,9 @@ metadata:
   name: movie-detail-pvc
   namespace: movie-qtm
 spec:
+  selector:
+    matchLabels:
+      app: movie-detail-db-pv
   accessModes:
     - ReadWriteMany
   resources:

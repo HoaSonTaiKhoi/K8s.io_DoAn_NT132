@@ -10,4 +10,3 @@ COPY --chown=node:node . .
 
 EXPOSE 8800
 CMD [ "node", "index.js" ]
-
