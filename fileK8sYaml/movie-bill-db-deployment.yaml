@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: movie-bill-db
+  namespace: movie-qtm
+spec:
+  serviceName: "movie-bill-db-service"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-bill-db
+  template:
+    metadata:
+      labels:
+        app: movie-bill-db
+    spec:
+      securityContext:
+        fsGroup: 65534
+      containers:
+        - name: movie-bill-db
+          image: mongo
+          env:
+            - name: MONGO_ROOT_PASSWORD
+              value: "adminmovieqtm"
+          volumeMounts:
+            - name: movie-bill-storage
+              mountPath: /data/db
+      volumes:
+        - name: movie-bill-storage
+          persistentVolumeClaim:
+            claimName: movie-bill-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-bill-db-service
+  namespace: movie-qtm
+spec:
+  selector:
+    app: movie-bill-db
+  ports:
+    - name: mongodb
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

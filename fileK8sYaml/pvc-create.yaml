@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: movie-user-pvc
+  namespace: movie-qtm
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: premium-rwo
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: movie-bill-pvc
+  namespace: movie-qtm
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: premium-rwo
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: movie-detail-pvc
+  namespace: movie-qtm
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: premium-rwo

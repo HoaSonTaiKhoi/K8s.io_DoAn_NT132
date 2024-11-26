@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: movie-qtm
+  name: movie-qtm-deployment
+  namespace: movie-qtm
+spec:
+  replicas: 1
+  revisionHistoryLimit: 11
+  selector:
+    matchLabels:
+      app: movie-qtm
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: movie-qtm
+      namespace: movie-qtm
+    spec:
+      containers:
+        - image: hoangvn2k4/movie-qtm-frontend:v2
+          imagePullPolicy: Always
+          name: movie-qtm-deployment
+          ports:
+            - containerPort: 80
+              name: tcp
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-qtm-service
+  namespace: movie-qtm
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: tcp
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: movie-qtm
+  sessionAffinity: None
+  type: ClusterIP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: Ingress
+metadata:
+  name: movie-qtm-ingress
+  namespace: movie-qtm
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: movie-qtm.qtmdoan.vn
+      http:
+        paths:
+          - backend:
+              service:
+                name: movie-qtm-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix

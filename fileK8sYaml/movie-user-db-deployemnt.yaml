@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: movie-user-db
+  namespace: movie-qtm
+spec:
+  serviceName: "movie-user-db-service"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-user-db
+  template:
+    metadata:
+      labels:
+        app: movie-user-db
+    spec:
+      securityContext:
+        fsGroup: 65534
+      containers:
+        - name: movie-user-db
+          image: mongo
+          env:
+            - name: MONGO_ROOT_PASSWORD
+              value: "adminmovieqtm"
+          volumeMounts:
+            - name: movie-user-storage
+              mountPath: /data/db
+      volumes:
+        - name: movie-user-storage
+          persistentVolumeClaim:
+            claimName: movie-user-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-user-db-service
+  namespace: movie-qtm
+spec:
+  selector:
+    app: movie-user-db
+  ports:
+    - name: mongodb
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

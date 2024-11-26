@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-1
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /data/movie-user-db
+    server: 10.128.0.3
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: premium-rwo
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-2
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /data/movie-bill-db
+    server: 10.128.0.3
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: premium-rwo
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-3
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /data/movie-detail-db
+    server: 10.128.0.3
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: premium-rwo

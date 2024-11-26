@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: movie-detail-serv
+  name: movie-detail-serv-deployment
+  namespace: movie-qtm
+spec:
+  replicas: 1
+  revisionHistoryLimit: 11
+  selector:
+    matchLabels:
+      app: movie-detail-serv
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: movie-detail-serv
+      namespace: movie-qtm
+    spec:
+      containers:
+        - image: hoangvn2k4/movie-detail-serv:v1
+          imagePullPolicy: Always
+          name: movie-detail-serv
+          ports:
+            - containerPort: 8800
+              name: tcp
+              protocol: TCP
+          env:
+            - name: MONGO_URL
+              value: 'mongodb://movie-detail-db-service:27017/details'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-detail-serv-service
+  namespace: movie-qtm
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: tcp
+      port: 8800
+      protocol: TCP
+      targetPort: 8800
+  selector:
+    app: movie-detail-serv
+  sessionAffinity: None
+  type: ClusterIP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: movie-detail-serv-ingress
+  namespace: movie-qtm
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: api-movie-qtm.qtmdoan.vn
+      http:
+        paths:
+          - backend:
+              service:
+                name: movie-detail-serv-service
+                port:
+                  number: 8800
+            path: /api/
+            pathType: ImplementationSpecific
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: movie-detail-depl-scaler
+  namespace: movie-qtm
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: deployment
+    name: movie-detail-serv-deployment
+  minReplicas: 1
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 40
