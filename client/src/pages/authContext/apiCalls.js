@@ -6,18 +6,19 @@ export const login = async(user, dispatch) => {
     try {
         const res = await axios.post(`${process.env.REACT_APP_URL}/api/auth/login`, user);
         dispatch(loginSuccess(res.data));
+
         Toastify({
-            text: 'Đăng nhập thành công',
+        text: 'Đăng nhập thành công',
             style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-              display : "flex",
-              justifyContent: "center",  // Căn giữa theo chiều ngang
-              alignItems: "center",
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                display : "flex",
+                justifyContent: "center",  // Căn giữa theo chiều ngang
+                alignItems: "center",
             },
-          }).showToast();
+        }).showToast();
     } catch(err) {
         Toastify({
-            text: err.response.data,
+            text: err.response.data + ' StatusCode: ' + err.response.status,
             style: {
               background: "red",
               display : "flex",
@@ -29,16 +30,6 @@ export const login = async(user, dispatch) => {
     }
 }
 
-export const loginAI = async(user, dispatch) => {
-    dispatch(loginStart());
-    try {
-    
-        const res = await axios.post(`${process.env.REACT_APP_URL}/api/auth/loginAI`, user);
-        dispatch(loginSuccess(res.data));
-    } catch(err) {
-        dispatch(loginFailure());
-    }
-}
 export const logout = async(dispatch) => {
     try {
         dispatch(logoutSuccess());

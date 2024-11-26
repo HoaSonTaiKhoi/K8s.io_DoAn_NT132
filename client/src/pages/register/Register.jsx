@@ -23,20 +23,29 @@ export default function Register() {
         setUsername(usernameRef.current.value);
 
         try {
-            await axios.post(`${process.env.REACT_APP_URL}/api/auth/register`, { email, username, password })
+            await axios.post(`${process.env.REACT_APP_URL}/api/auth/register`, { email, username, password });
+            Toastify({
+                text: 'Đăng kí  thành công',
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                  display : "flex",
+                  justifyContent: "center",  // Căn giữa theo chiều ngang
+                  alignItems: "center",
+                },
+              }).showToast();
             navigate("/login");
+            
         } catch (err) {
-            console.log(err);
+            Toastify({
+                text:'Đăng ký thất bại!',
+                style: {
+                  background: "red",
+                  display : "flex",
+                  justifyContent: "center",  // Căn giữa theo chiều ngang
+                  alignItems: "center",
+                },
+              }).showToast();
         }
-        Toastify({
-            text: 'Đăng kí  thành công',
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-              display : "flex",
-              justifyContent: "center",  // Căn giữa theo chiều ngang
-              alignItems: "center",
-            },
-          }).showToast();
     };
     return (
         <div className="login">
@@ -78,17 +87,6 @@ export default function Register() {
                             <p>Have an account ?
                                 <a href="#">
                                     <Link to="/login">
-                                        Login
-                                    </Link>
-                                </a>
-                            </p>
-                        </div>
-                        
-
-                        <div className="register-link">
-                            <p>Login by FACE ?
-                                <a href="#">
-                                    <Link to="/loginAI">
                                         Login
                                     </Link>
                                 </a>

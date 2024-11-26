@@ -99,9 +99,7 @@ const Profile = () => {
           display : "flex",
           justifyContent: "center",  // Căn giữa theo chiều ngang
           alignItems: "center",
-        },
-        
-      
+        },      
       }).showToast();
     } catch (err) {
       console.log(err);

@@ -2,13 +2,17 @@ const router = require("express").Router();
 const User = require("../models/User");
 var CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken")
-const nodeMailer = require("nodemailer")
+const nodeMailer = require("nodemailer");
+const dns = require("dns");
 router.post("/register", async (req, res) => {
     const existedUser = await User.findOne({
         email: req.body.email
     });
 
-    console.log(existedUser);
+    if(existedUser) {
+        res.status(500).json("");
+        return;
+    }
 
     const newUser = new User({
         username: req.body.username,
@@ -35,8 +39,8 @@ router.post("/register", async (req, res) => {
         expiresIn: "1h",
     });
 
-
     const verificationLink =  `${process.env.REACT_APP_URL}/api/auth/verifyEmail?token=${token}`;
+
     let mailOptions = {
         from: process.env.MAIL_FROM,
         to: newUser.email,
@@ -56,6 +60,7 @@ router.post("/register", async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+    return;
 });
 
 router.post("/forgotPassword", async (req, res) => {
@@ -153,10 +158,10 @@ router.post("/login", async (req, res) => {
         if (!user) {
             return res.status(401).json("Wrong password or username!")
         }
-        const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
-        const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
+
+        const originalPassword = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
         
-        if (originalPassword !== req.body.password) {
+        if (originalPassword != req.body.password) {
             return res.status(401).json("Wrong password or username!")
         }
 

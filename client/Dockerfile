@@ -1,15 +1,16 @@
 FROM node:18.18-alpine AS build
 
 WORKDIR /app
+
+COPY package*.json yarn.lock ./ 
+RUN yarn cache clean && yarn install
+
 COPY . .
 
-RUN npm cache clean --force
-RUN npm install && npm run build
+RUN yarn build
 
 FROM nginx:alpine
-
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]

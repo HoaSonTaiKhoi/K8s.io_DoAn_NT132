@@ -65,16 +65,6 @@ export default function Login() {
                                 </a>
                             </p>
                         </div>
-
-                        <div className="register-link">
-                            <p>Login by FACE ?
-                                <a href="#">
-                                    <Link to="/loginAI">
-                                        Login
-                                    </Link>
-                                </a>
-                            </p>
-                        </div>
                     </form>
                 </div>
             </div>
