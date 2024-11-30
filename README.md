@@ -43,3 +43,8 @@ Repository này là source code về frontend, backend(api), Dockerfile, các fi
 ## Các link liên quan:
 - [Link Repo](https://github.com/HoaSonTaiKhoi/K8s.io_DoAn_NT132)
 - [Link Danh sách phát Demo](https://www.youtube.com/watch?v=itmKM771e4U&list=PLEfRbAMIW0HuR1hlUNDo0-e4UCkgwPBeT&pp=gAQB)
+
+## Tham khảo: 
+- [Source web](https://github.com/tvdat20004/NT208.O21.ANTN_MovieWeb)
+- [Documentation](https://kubernetes.io/docs/concepts/overview/components/)
+- [Tutorial](https://youtube.com/playlist?list=PLsvroIvFNP1KrW1x_W8nAi7095-R0lvaI&si=8OGSRwYViGwPrkAQ)
