@@ -10,7 +10,7 @@ Repository này là source code về frontend, backend(api), Dockerfile, các fi
 | ------------------ | -------- | ----------------------------------------------|
 | Võ Nhật Hoàng      | 22520481 | Viết các file yaml, deploy trên gcd, test demo|
 | Võ Nguyễn Thái Học | 22520489 | Viết Dockerfile, build image, test demo       |
-| Trần Hữu Hiếu      | 22520444 | Hỗ trợ deploy, kiểm tra khả năng của web      |
+| Trần Hữu Hiếu      | 22520444 | Hỗ trợ deploy, kiểm tra web, database         |
 | Nguyễn Hoàng Duy   | 22520489 | Thuyết trình, Hỗ trợ test demo                |
 | Lê Vũ Ca           | 22520140 | Viết báo cáo, Power Point, Hỗ trợ lý thuyết   |
 
