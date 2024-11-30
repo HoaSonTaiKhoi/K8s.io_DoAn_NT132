@@ -1,13 +1,41 @@
-## Thành viên: 
+# Đồ Án Môn NT132 - Movie App
+## Lời mở đầu
+Nhóm chúng em xin phép chào thầy, các bạn cũng như mọi người truy cập được tới repo này.
+Repository này là source code về frontend, backend(api), Dockerfile, các file yaml liên quan về web chiếu phim.
+>Mục đính chính: Demo về các tính năng của Kubernetes (K8s).
 
-| Thành viên         | MSSV     | Công việc                            |
-| ------------------ | -------- | ------------------------------------ |
-| Võ Nhật Hoàng      | 22520481 | Movie frontend (40%)                 |
-| võ Nguyễn Thái Học | 22520489 | Backend NodeJs (30%)                 |
-| Trần Hữu Hiếu      | 22520444 | Admin frontend, backend python (30%) |
-| Nguyễn Hoàng Duy   | 22520489 | Backend NodeJs (30%)                 |
-| Lê Vũ Ca           | 22520140 | Admin frontend, backend python (30%) |
+## Thành viên nhóm 4: 
+
+| Thành viên         | MSSV     | Công việc                                     |
+| ------------------ | -------- | ----------------------------------------------|
+| Võ Nhật Hoàng      | 22520481 | Viết các file yaml, deploy trên gcd, test demo|
+| võ Nguyễn Thái Học | 22520489 | Viết Dockerfile                               |
+| Trần Hữu Hiếu      | 22520444 | Hỗ trợ deploy, kiểm tra khả năng của web      |
+| Nguyễn Hoàng Duy   | 22520489 | Thuyết trình, Hỗ trợ test demo                |
+| Lê Vũ Ca           | 22520140 | Viết báo cáo, Power Point, Hỗ trợ lý thuyết   |
 
 
-Check push code
-Check lại xung đột
+### Mô hình tổng quan:
+![Architecture](./HinhAnhMoHinh.jpg)
+
+## Các service trong project này:
+- Authentication Service - Xác thực người dùng
+- Bill Service - Dịch vụ thanh toán để xem phim
+- Detail Service - Cung cấp các thông tin chi tiết về phim, liệt kê các phim
+- User Service - Lưu trữ thông tin các nhân người dùng, phim yêu thích
+
+
+## Các dịch vụ, framework đã sử dụng:
+- Ingress Controller - Kiểm soát endpoint của web
+- Dockerfile - Dóng gói các service thành các image.
+- Google Kubernetes Engine (GKE) - Dịch vụ Kubernetes được cung cấp bởi Google Cloud Platform
+- Dockerhub: Lưu trữ các image đã đóng gói.
+- ReactJS, Nodejs: Lần lượt là các framework hỗ trợ frontend, backend.
+- MongoDB (Mongosh): Cơ sở dữ liệu để lưu thông tin phim, người dùng.
+
+## Kịch bản demo:
+- Thực hiện xóa pod để kiểm tra khả năng tự phục hồi.
+- Khả năng auto scale – tự tăng số lượng pod khi lượng tài nguyên sử dụng vượt quá mức cho phép.
+- Thực hiện xóa và phục hồi pod để kiểm tra dữ liệu có còn được giữ nguyên không (với các pod được gán persistent volume).
+- Kiểm tra liệu khi tăng số pod chạy database thì chúng có dùng chung dữ liệu hay không, có scale theo index (statefulSet) hay không và độ trễ ổn định dữ liệu là bao lâu.
+- Theo dõi log và giám sát hoạt động của ứng dụng.
