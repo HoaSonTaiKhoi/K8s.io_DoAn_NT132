@@ -39,3 +39,7 @@ Repository này là source code về frontend, backend(api), Dockerfile, các fi
 - Thực hiện xóa và phục hồi pod để kiểm tra dữ liệu có còn được giữ nguyên không (với các pod được gán persistent volume).
 - Kiểm tra liệu khi tăng số pod chạy database thì chúng có dùng chung dữ liệu hay không, có scale theo index (statefulSet) hay không và độ trễ ổn định dữ liệu là bao lâu.
 - Theo dõi log và giám sát hoạt động của ứng dụng.
+
+## Các link liên quan:
+- [Link Repo](https://github.com/HoaSonTaiKhoi/K8s.io_DoAn_NT132)
+- [Link Danh sách phát Demo](https://www.youtube.com/watch?v=itmKM771e4U&list=PLEfRbAMIW0HuR1hlUNDo0-e4UCkgwPBeT&pp=gAQB)
