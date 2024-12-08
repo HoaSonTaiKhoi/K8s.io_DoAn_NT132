@@ -28,14 +28,6 @@ const Slidebar = () => {
                 Home
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li>
           </ul>
         </div>
         <div className="sidebarMenu">
@@ -59,44 +51,31 @@ const Slidebar = () => {
                 Lists
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Reports
-            </li>
           </ul>
         </div>
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
+
+
+        <h3 className="sidebarTitle">Add New</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Mail
-            </li>
-            <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Feedback
-            </li>
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Messages
-            </li>
-          </ul>
-        </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Staff</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
-              Manage
-            </li>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
-            </li>
+            <Link to="/newUser" className='link'>
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                Add Users
+              </li>
+            </Link>
+            <Link to="/newproduct" className='link'>
+              <li className="sidebarListItem">
+                <PlayCircleOutline className="sidebarIcon" />
+                New Movies
+              </li>
+            </Link>
+            <Link to="/newList" className='link'>
+              <li className="sidebarListItem">
+                <List className="sidebarIcon" />
+                New List
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

@@ -4,7 +4,8 @@ import { deleteMovieFailure, deleteMovieStart } from "./MovieActions";
 export const getMovies = async (dispatch) => {
   dispatch(getMoviesStart());
   try {
-    const res = await axios.get(`https://nodejs-server-1-o4q8.onrender.com/api/movies`, {
+    console.log(process.env);
+    const res = await axios.get(`https://api-movie-qtm.qtmdoan.vn/api/movies`, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -18,7 +19,7 @@ export const getMovies = async (dispatch) => {
 export const deleteMovie = async (id, dispatch) => {
   dispatch(deleteMovieStart());
   try {
-    await axios.delete(`https://nodejs-server-1-o4q8.onrender.com/api/movies/` + id, {
+    await axios.delete(`https://api-movie-qtm.qtmdoan.vn/api/movies/` + id, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -32,7 +33,7 @@ export const deleteMovie = async (id, dispatch) => {
 export const createMovie = async (movie, dispatch) => {
   dispatch(createMovieStart());
   try {
-    const res = await axios.post(`https://nodejs-server-1-o4q8.onrender.com/api/movies`, movie, {
+    const res = await axios.post(`https://api-movie-qtm.qtmdoan.vn/api/movies`, movie, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },

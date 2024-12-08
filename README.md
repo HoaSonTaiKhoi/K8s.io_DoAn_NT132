@@ -6,13 +6,13 @@ Repository này là source code về frontend, backend(api), Dockerfile, các fi
 
 ## Thành viên nhóm 4: 
 
-| Thành viên         | MSSV     | Công việc                                     |
-| ------------------ | -------- | ----------------------------------------------|
-| Võ Nhật Hoàng      | 22520481 | Viết các file yaml, deploy trên gcd, test demo|
-| Võ Nguyễn Thái Học | 22520489 | Viết Dockerfile, build image, test demo       |
-| Trần Hữu Hiếu      | 22520444 | Hỗ trợ deploy, kiểm tra web, database         |
-| Nguyễn Hoàng Duy   | 22520329 | kiểm tra web, add dữ liệu database, test demo |
-| Lê Vũ Ca           | 22520140 | Viết báo cáo, Hỗ trợ deploy, kiểm tra web     |
+| Thành viên         | MSSV     | 
+| ------------------ | -------- | 
+| Võ Nhật Hoàng      | 22520481 | 
+| Võ Nguyễn Thái Học | 22520489 |
+| Trần Hữu Hiếu      | 22520444 |
+| Nguyễn Hoàng Duy   | 22520329 |
+| Lê Vũ Ca           | 22520140 |
 
 
 ### Mô hình tổng quan:

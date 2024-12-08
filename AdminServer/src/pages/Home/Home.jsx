@@ -32,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await axios.get("https://nodejs-server-1-o4q8.onrender.com/api/users/stats", {
+        const res = await axios.get(`https://api-movie-qtm.qtmdoan.vn/api/users/stats`, {
           headers: {
             token:
               "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,

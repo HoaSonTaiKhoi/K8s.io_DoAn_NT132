@@ -8,7 +8,7 @@ const WidgetSm = ()  =>{
   useEffect(() => {
     const getNewUser = async () => {
       try {
-        const res = await axios.get("https://nodejs-server-1-o4q8.onrender.com/api/users?new=true", {
+        const res = await axios.get("http://localhost:4000/api/users?new=true", {
           headers: {
             token:
             "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,

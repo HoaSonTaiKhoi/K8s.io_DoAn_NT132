@@ -1,5 +1,5 @@
-
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";

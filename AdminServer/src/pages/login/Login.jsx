@@ -20,6 +20,11 @@ export default function Login() {
       <form className="loginForm">
         <input
           type="text"
+          placeholder="test"
+          className="loginInput"
+        />
+        <input
+          type="text"
           placeholder="email"
           className="loginInput"
           onChange={(e) => setEmail(e.target.value)}
