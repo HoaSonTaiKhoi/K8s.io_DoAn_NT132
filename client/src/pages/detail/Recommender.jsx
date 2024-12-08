@@ -45,7 +45,7 @@ const Recommender = props => {
     useEffect(() => {
         const findRecommender = async() => {
             try {
-                const res = await axios.post("https://pythonserver-6.onrender.com/api/movies/recommendations", {
+                const res = await axios.post(`${process.env.REACT_APP_URL}/api/movies/recommendations`, {
                     ratings : ratings,
                     movies: movies,
                     movie_title: Title
